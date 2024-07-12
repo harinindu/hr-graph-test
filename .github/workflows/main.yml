@@ -26,7 +26,7 @@ jobs:
         name: create supergraph
         run: |
           echo ---------------------------------------------------------------
-          rover supergraph compose --config $HOME/schemas/dev/supergraph.yaml >> $HOME/schemas/dev/dev.yaml
+          rover supergraph compose --config ./schemas/dev/supergraph.yaml >> ./schemas/dev/dev.yaml
       - name: Run the Action
         uses: devops-infra/action-commit-push@master
         with:
