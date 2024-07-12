@@ -1,0 +1,12 @@
+federation_version: =2.3.2
+subgraphs:
+
+  inventory-api:
+    routing_url: https://localhost:8001/inventory-api/graphql
+    schema:
+      file: ./inventory.graphql
+
+  orders-api:
+    routing_url: https://localhost:8001/products-api/graphql
+    schema:
+       file: ./products.graphql
