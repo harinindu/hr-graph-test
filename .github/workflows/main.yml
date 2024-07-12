@@ -1,0 +1,21 @@
+name: CI Gateway
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  ci-docker-local:
+    name: CI Gateway
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      -
+        name: install rover
+        run: |
+          echo ---------------------------------------------------------------
+          echo rover - installing ...
+          echo ---------------------------------------------------------------
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> ${GITHUB_PATH}
