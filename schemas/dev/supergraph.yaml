@@ -10,3 +10,8 @@ subgraphs:
     routing_url: https://localhost:8001/products-api/graphql
     schema:
        file: ./products.graphql
+
+  users-api:
+    routing_url: https://localhost:8001/users-api/graphql
+    schema:
+       file: ./users.graphql
