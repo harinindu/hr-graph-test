@@ -8,6 +8,9 @@ jobs:
   ci-docker-local:
     name: CI Gateway
     runs-on: ubuntu-latest
+    env: 
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: Continuous Integration
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -19,3 +22,17 @@ jobs:
           echo ---------------------------------------------------------------
           curl -sSL https://rover.apollo.dev/nix/latest | sh
           echo "$HOME/.rover/bin" >> ${GITHUB_PATH}
+      -
+        name: create supergraph
+        run: |
+          echo ---------------------------------------------------------------
+          rover supergraph compose --config $HOME/schemas/dev/supergraph.yaml >> $HOME/schemas/dev/dev.yaml
+      - name: Run the Action
+        uses: devops-infra/action-commit-push@master
+        with:
+          #github_token: "${{ secrets.GITHUB_TOKEN }}"
+          add_timestamp: true
+          commit_prefix: "[AUTO]"
+          commit_message: "Automatic commit"
+          force: false
+          target_branch: update/version
